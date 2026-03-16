@@ -1,5 +1,8 @@
 # Learning Partner (Local-First)
 
+I want ot create an app that can record what i listen to in youtube and spotify and then checks fi the information is correct, summarize and explain the information, and provide links to specifc topcis mentioned that I could explore further, andalso record my thoughts via voice in real time and provide feedback and collect links and websources which i could then go on to study further later. I love listening to podcasts while I am walking and on the train (PATH NJ, no wifi), so there should be an LLM that analyzes what I am learning (listening) and thinking in real time, locally on the device SLM. Also I want to to know my current projects and interests - for example i should be able to add my projects on consumer behavior and how household characteristic affect their purchasing and behavior and environemntally friendly decisions. also i wanna add my real estate project studying .divergence. also i want it to track AI semis landscpa eAI infra bottlenecks and laests AI news and connect the dots between everything that i am thiknnig and leanring. Bascially, I should add topics of interest and questions that I am curious about and study it with me( listen to podcasts and videos that I am listening to and think along with me while double chekcing the information - make sure they are correct and provide sources so i could dive deeper) - basically a learning partner.
+
+
 This project is a starter implementation for a personal learning partner app that:
 
 - Tracks what you listen to on YouTube and Spotify.

@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.models import (
     CreateSessionResponse,
@@ -13,11 +17,25 @@ from app.models import (
     ThoughtEvent,
     ThoughtEventIn,
 )
+from app.demo_data import bootstrap_demo_session
 from app.services.analyzer import analyze_session
 from app.store import InMemoryStore
 
 app = FastAPI(title="Learning Partner API", version="0.1.0")
 store = InMemoryStore()
+STATIC_DIR = Path(__file__).resolve().parent / "static"
+
+app.mount("/assets", StaticFiles(directory=STATIC_DIR), name="assets")
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/demo")
+
+
+@app.get("/demo", include_in_schema=False)
+def demo():
+    return FileResponse(STATIC_DIR / "demo.html")
 
 
 @app.get("/health")
@@ -51,6 +69,11 @@ def add_project(project: Project):
 def create_session():
     session_id = store.create_session()
     return CreateSessionResponse(session_id=session_id)
+
+
+@app.post("/demo/bootstrap", response_model=SessionState)
+def create_demo_session(online_verification: bool = False):
+    return bootstrap_demo_session(store=store, online_verification=online_verification)
 
 
 @app.get("/sessions/{session_id}", response_model=SessionState)

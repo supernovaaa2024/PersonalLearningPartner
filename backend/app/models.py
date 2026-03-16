@@ -41,6 +41,7 @@ class VerificationItem(BaseModel):
 class SessionInsight(BaseModel):
     summary: str
     explanation: str
+    feedback: str
     verification: list[VerificationItem] = Field(default_factory=list)
     suggested_links: list[LinkSuggestion] = Field(default_factory=list)
     connected_projects: list[str] = Field(default_factory=list)
@@ -98,4 +99,3 @@ class SessionState(BaseModel):
 
 class CreateSessionResponse(BaseModel):
     session_id: str
-

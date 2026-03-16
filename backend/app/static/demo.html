@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Partner Demo</title>
+    <link rel="stylesheet" href="/assets/demo.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Local-first learning partner</p>
+          <h1>Think along with what you listen to.</h1>
+          <p class="hero-text">
+            This demo simulates a walking-session workflow: capture podcast or video snippets,
+            record your thoughts, and generate a project-aware summary with queued verification and
+            deeper links.
+          </p>
+          <div class="hero-actions">
+            <button id="bootstrap-demo" class="primary">Load commute demo</button>
+            <button id="create-session" class="secondary">Create blank session</button>
+            <button id="analyze-offline" class="secondary">Analyze offline</button>
+            <button id="analyze-online" class="secondary">Analyze with source placeholders</button>
+          </div>
+          <p id="status-banner" class="status-banner">Loading profile…</p>
+        </div>
+        <aside class="hero-note reveal">
+          <div class="note-card">
+            <h2>What this demo covers</h2>
+            <ul>
+              <li>Session timeline for YouTube, Spotify, and voice thoughts</li>
+              <li>Offline-first summaries and claim queues</li>
+              <li>Project matching across your research areas</li>
+              <li>Deeper links for topics worth studying later</li>
+            </ul>
+          </div>
+        </aside>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel profile-panel reveal">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Profile</p>
+              <h2>Projects and interests</h2>
+            </div>
+          </div>
+          <div id="profile-content" class="profile-content"></div>
+
+          <form id="question-form" class="inline-form">
+            <label for="question-input">Add research question</label>
+            <div class="input-row">
+              <input id="question-input" name="question" placeholder="What am I trying to understand?" required />
+              <button type="submit" class="secondary">Save question</button>
+            </div>
+          </form>
+
+          <form id="interest-form" class="inline-form">
+            <label for="interest-input">Add interest</label>
+            <div class="input-row">
+              <input id="interest-input" name="interest" placeholder="Topic of interest" required />
+              <button type="submit" class="secondary">Save interest</button>
+            </div>
+          </form>
+
+          <form id="project-form" class="stacked-form">
+            <h3>Add project</h3>
+            <input id="project-id" name="project_id" placeholder="project-id" required />
+            <input id="project-name" name="project_name" placeholder="Project name" required />
+            <textarea
+              id="project-description"
+              name="project_description"
+              placeholder="What is the project about?"
+              rows="3"
+              required
+            ></textarea>
+            <input id="project-tags" name="project_tags" placeholder="tags, comma separated" />
+            <button type="submit" class="secondary">Add project</button>
+          </form>
+        </section>
+
+        <section class="panel session-panel reveal">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Session</p>
+              <h2>Listening and thought stream</h2>
+            </div>
+            <div id="session-meta" class="session-meta">No session yet</div>
+          </div>
+
+          <div class="composer-grid">
+            <form id="listening-form" class="stacked-form">
+              <h3>Add listening chunk</h3>
+              <select id="listening-platform" name="platform">
+                <option value="spotify">Spotify</option>
+                <option value="youtube">YouTube</option>
+                <option value="local_audio">Local audio</option>
+                <option value="manual">Manual</option>
+              </select>
+              <input id="listening-title" name="title" placeholder="Episode or video title" required />
+              <input id="listening-creator" name="creator" placeholder="Creator" />
+              <input id="listening-url" name="content_url" placeholder="Content URL" />
+              <input id="listening-topics" name="topics" placeholder="topics, comma separated" />
+              <textarea
+                id="listening-transcript"
+                name="transcript_chunk"
+                rows="5"
+                placeholder="Transcript chunk or your manual notes"
+                required
+              ></textarea>
+              <button type="submit" class="secondary">Append listening event</button>
+            </form>
+
+            <form id="thought-form" class="stacked-form">
+              <h3>Add thought</h3>
+              <textarea
+                id="thought-transcript"
+                name="transcript_chunk"
+                rows="7"
+                placeholder="What are you thinking right now?"
+                required
+              ></textarea>
+              <label class="slider-label" for="thought-confidence">
+                Confidence
+                <span id="confidence-value">0.75</span>
+              </label>
+              <input
+                id="thought-confidence"
+                name="confidence"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.75"
+              />
+              <button type="submit" class="secondary">Append thought event</button>
+            </form>
+          </div>
+
+          <div id="timeline" class="timeline empty-state">
+            Start a blank session or load the commute demo to see events here.
+          </div>
+        </section>
+
+        <section class="panel insight-panel reveal">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Insight</p>
+              <h2>Summary, feedback, and next steps</h2>
+            </div>
+          </div>
+          <div id="insight" class="insight empty-state">
+            Analyze a session to generate summary, verification status, suggested links, and project connections.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/assets/demo.js" defer></script>
+  </body>
+</html>
